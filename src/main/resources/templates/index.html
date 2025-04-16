@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="../static/assets/css/style.css" th:href="@{/assets/css/style.css}">
+<head>
+  <meta charset="UTF-8">
+  <title>Калькулятор отпускных</title>
+</head>
+<body>
+<h1>Калькулятор отпускных</h1>
+
+<form action="/calculate" method="get">
+  <div>
+    <label>Средняя зарплата (руб):</label>
+    <input type="number" name="average_salary" required>
+  </div>
+  <div>
+    <label>Количество дней отпуска:</label>
+    <input type="number" name="vacation_days">
+  </div>
+  <div>
+    <h3>Для более точного подсчёта: </h3>
+    <label>Дата начала:</label>
+    <input type="date" name="start_date">
+    <div>
+      <label>Дата окончания:</label>
+      <input type="date" name="end_date">
+    </div>
+  </div>
+  <button type="submit">Рассчитать</button>
+</form>
+
+<div th:if="${result != null}" class="result">
+  <h3>Сумма отпускных: <span th:text="${result}"></span> руб. </h3>
+</div>
+
+<div th:if="${error != null}" style="color: red;">
+  <span th:text="${error}"></span>
+</div>
+
+</body>
+</html>
